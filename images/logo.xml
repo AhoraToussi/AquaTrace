@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180" height="40" viewBox="0 0 180 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AquaTrace logo">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00b4d8"/><stop offset="100%" stop-color="#0077b6"/></linearGradient></defs>
+  <path d="M20 4 C14 14,8 20,8 26 a12 12 0 0 0 24 0 c0-6-6-12-12-22z" fill="url(#g)"/>
+  <text x="48" y="28" font-family="system-ui,-apple-system,Segoe UI,Roboto,Arial" font-size="22" font-weight="700" fill="#023e8a">Aqua</text>
+  <text x="108" y="28" font-family="system-ui,-apple-system,Segoe UI,Roboto,Arial" font-size="22" font-weight="500" fill="#0096c7">Trace</text>
+</svg>
