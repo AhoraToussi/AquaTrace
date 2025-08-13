@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AquaTrace | Smart Leak Detection</title>
+  <meta name="description" content="Non-invasive water leak detection using thermal imaging, acoustic listening, tracer gas and moisture mapping. Fixed-price surveys, same-day callouts.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="AquaTrace | Smart Leak Detection">
+  <meta property="og:description" content="Non-invasive water leak detection. Fixed-price surveys, same-day callouts.">
+  <meta property="og:image" content="images/og.jpg">
+  <meta property="og:type" content="website">
+  <link rel="preload" href="images/hero-side.jpg" as="image">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home"><img src="images/logo.svg" alt="AquaTrace logo" height="36"></a>
+      <nav class="menu">
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero two-col">
+      <div class="hero-inner container two-col">
+        <div class="hero-img"><img src="images/hero-side.jpg" alt="Technician using thermal imaging camera"></div>
+        <div class="hero-text">
+          <h1>Find leaks. Fix fast. No mess.</h1>
+          <p>Thermal imaging, acoustic listening, tracer gas and moisture mapping – done by pros with minimal disruption.</p>
+          <div class="cta">
+            <a class="btn primary" href="#contact">Book a survey</a>
+            <a class="btn ghost" href="#pricing">See pricing</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features container">
+      <div class="card"><h3>Non-invasive</h3><p>Pinpoint leaks without ripping up floors or walls.</p></div>
+      <div class="card"><h3>Fixed price</h3><p>Clear, upfront pricing for homes and businesses.</p></div>
+      <div class="card"><h3>Same-day</h3><p>Rapid callouts across your area, 7 days a week.</p></div>
+    </section>
+
+    <section id="pricing" class="container">
+      <h2>Pricing</h2>
+      <div class="price-grid">
+        <details class="price-card" id="plan-basic">
+          <summary><h3>Basic</h3><p class="price">£199</p><p class="hint">Click to see what's included</p></summary>
+          <ul>
+            <li>Up to 2 hours on site</li>
+            <li>Thermal imaging & acoustic survey</li>
+            <li>Moisture mapping</li>
+            <li>Findings explained on site</li>
+          </ul>
+          <a class="btn primary" href="#contact" data-plan="Basic">Book Basic</a>
+        </details>
+        <details class="price-card" id="plan-standard">
+          <summary><h3>Standard</h3><p class="price">£299</p><p class="hint">Click to see what's included</p></summary>
+          <ul>
+            <li>Up to 3 hours on site</li>
+            <li>Thermal, acoustic & tracer gas (where suitable)</li>
+            <li>Moisture mapping & pipe route tracing</li>
+            <li>Summary report (PDF)</li>
+          </ul>
+          <a class="btn primary" href="#contact" data-plan="Standard">Book Standard</a>
+        </details>
+        <details class="price-card" id="plan-enhanced">
+          <summary><h3>Enhanced</h3><p class="price">£399</p><p class="hint">Click to see what's included</p></summary>
+          <ul>
+            <li>Up to 5 hours on site</li>
+            <li>Full equipment suite incl. tracer gas</li>
+            <li>Pressure testing (if required)</li>
+            <li>Detailed insurance-ready report</li>
+          </ul>
+          <a class="btn primary" href="#contact" data-plan="Enhanced">Book Enhanced</a>
+        </details>
+      </div>
+    </section>
+
+    <section id="faq" class="container">
+      <h2>FAQ</h2>
+      <details><summary>Will you need to dig or drill?</summary><p>We use non-destructive methods first. If access is needed, we'll explain options before any work.</p></details>
+      <details><summary>Do you repair the leak too?</summary><p>We locate the leak and can arrange trusted contractors for repairs if required.</p></details>
+    </section>
+
+    <section id="contact" class="container contact">
+      <h2>Contact Us</h2>
+      <form onsubmit="event.preventDefault(); alert('This is a placeholder form. Connect it to your backend or a form service.');">
+        <div class="grid">
+          <input type="text" placeholder="Your name" required>
+          <input type="tel" placeholder="Phone number" required>
+        </div>
+        <input type="email" placeholder="Email" required>
+        <textarea rows="5" placeholder="Describe the issue (where, when, what you notice)"></textarea>
+        <button class="btn primary" type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>© <span id="y"></span> AquaTrace. All rights reserved.</p></div></footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // Smooth scroll & offset + accordion + plan prefill
+    (function(){
+      // Smooth scroll with sticky-header offset handled via CSS scroll-margin
+      document.querySelectorAll('a[href^="#"]').forEach(function(a){
+        a.addEventListener('click', function(e){
+          var id = this.getAttribute('href').slice(1);
+          var el = document.getElementById(id);
+          if(!el) return;
+          e.preventDefault();
+          el.scrollIntoView({behavior:'smooth', block:'start'});
+          history.pushState(null, '', '#' + id);
+        });
+      });
+      // Only one pricing details open
+      var cards = document.querySelectorAll('.price-card');
+      cards.forEach(function(card){
+        card.addEventListener('toggle', function(){
+          if(card.open){ cards.forEach(function(o){ if(o!==card) o.open=false; }); }
+        });
+      });
+      // Prefill contact textarea with chosen plan
+      var form = document.querySelector('#contact form');
+      if(form){
+        form.addEventListener('click', function(e){
+          var link = e.target.closest('a[data-plan]'); if(!link) return;
+          var plan = link.getAttribute('data-plan');
+          var ta = form.querySelector('textarea');
+          if(ta){ ta.value = ('Selected plan: ' + plan + '\n' + ta.value).trim(); }
+        }, true);
+      }
+    })();
+  </script>
+</body>
+</html>
